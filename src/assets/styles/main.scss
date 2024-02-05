@@ -1,0 +1,111 @@
+@import "_theme.scss";
+@import "_mixins.scss";
+@import "_variables.scss";
+
+$font-color: rgba(37, 43, 66, 1);
+
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  position: relative;
+}
+
+html, body {
+  color: $font-color;
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  text-rendering: optimizeLegibility;
+  margin: 0;
+  padding: 0;
+}
+
+#app {
+  margin: 0 auto;
+  font-size: 16px;
+  min-height: inherit;
+}
+
+header {
+  padding: 1rem 4rem;
+}
+
+header .navbar__menu {
+  color: $primary;
+}
+
+a {
+  text-decoration: none;
+  color: var(--surface-700);
+  transition: color .2s ease;
+
+  &:hover {
+    color: #1D4ED8;
+  }
+}
+
+.container {
+  max-width: 960px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.logo {
+  height: 50px;
+}
+
+footer {
+  background: #312F2F;
+}
+
+#password {
+  svg {
+    right: 1rem;
+  }
+}
+
+.p-dialog-header-close {
+  background-color: var(--red-100) !important;
+  svg path {
+    fill: var(--red-500) !important;
+  }
+}
+
+.field > label {
+  display: block !important;
+}
+
+//.p-component, .p-inputtext {
+//  font-family: inherit;
+//}
+
+.p-datatable-loading-overlay.p-component-overlay {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+.p-inputtext {
+  border-radius: 10px;
+}
+.p-placeholder {
+  color: #CACED8 !important;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #CACED8;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #CACED8;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #CACED8;
+}
+
+.is-40x40 {
+  width: 40px !important;
+  height: 40px !important;
+}
+

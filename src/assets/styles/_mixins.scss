@@ -1,0 +1,17 @@
+@mixin from($device) {
+  @media screen and (min-width: $device) {
+    @content
+  }
+}
+
+@mixin until($device) {
+  @media screen and (max-width: $device - 1px) {
+    @content
+  }
+}
+
+@mixin between($from, $until) {
+  @media screen and (min-width: $from) and (max-width: $until - 1px) {
+    @content
+  }
+}
