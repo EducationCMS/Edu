@@ -37,7 +37,7 @@ const authorize = async() => {
 const handleRouteChange = (role: string) => {
   const routeName = {
     'ROLE_STUDENT': 'CourseList',
-    'ROLE_ADMIN': 'AdminAnalytics',
+    'ROLE_ADMIN': 'AdminCourseList',
     'ROLE_MANAGER': 'ManagerStudentList',
     'ROLE_TEACHER': 'TeacherGroupList'
   }[role]
@@ -52,18 +52,18 @@ watch(user, (newValue) => {
 <template>
   <div class="flex flex-column h-screen">
     <div class="py-2 px-6">
-      <img
-        src="@/assets/images/logo.png"
-        alt="inSight logo"
+      <h1
         class="logo cursor-pointer"
         @click="router.push({ name: 'Home' })"
-      />
+      >
+        Vanres
+      </h1>
     </div>
     <div class="flex justify-content-center flex-grow-1">
       <div class="login px-5 pt-3 pb-8 mt-8 mb-auto">
-        <p class="text-xl font-medium mb-6">Bilimlab платформасына қош келдіңіз!</p>
+        <p class="text-xl font-medium mb-6">Добро пожаловать на платформу Vanres</p>
         <div class="flex flex-column gap-2 mb-4">
-          <label for="email" class="font-light">Пошта</label>
+          <label for="email" class="font-light">Email</label>
           <InputText v-model="email" id="email" placeholder="Поштаңызды енгізіңіз" />
         </div>
         <div class="flex flex-column gap-2">
@@ -79,10 +79,10 @@ watch(user, (newValue) => {
           />
         </div>
         <router-link to="/forgot-password" class="no-underline font-light text-sm text-primary">
-          <p>Құпиясөзді ұмыттыңыз ба?</p>
+          <p>Забыли пароль?</p>
         </router-link>
         <Message v-if="error" severity="error" :closable="false">{{ error }}</Message>
-        <Button label="Кіру" class="mt-5 w-full" :loading="is_loading" @click="authorize" />
+        <Button label="Войти" class="mt-5 w-full" :loading="is_loading" @click="authorize" />
       </div>
     </div>
   </div>

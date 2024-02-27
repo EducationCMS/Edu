@@ -163,56 +163,56 @@ watch(() => props.testId, (newValue) => {
 </script>
 
 <template>
-  <Dialog v-model:visible="modelValue" modal :header="`${topicName} | Тест өзгерту`" :style="{ width: '50vw' }" @after-hide="onDialogClose">
+  <Dialog v-model:visible="modelValue" modal :header="`${topicName} | Редактирование теста`" :style="{ width: '50vw' }" @after-hide="onDialogClose">
     <div class="py-2">
-<!--      <Textarea v-if="selectedType === 'Context'" v-model="description" autoResize rows="2" class="w-full" placeholder="Сипаттама" />-->
-      <Editor v-if="selectedType === 'Context'" v-model="description" editor-style="height: 250px" class="w-full" placeholder="Сипаттама" />
+      <!--      <Textarea v-if="selectedType === 'Context'" v-model="description" autoResize rows="2" class="w-full" placeholder="Описание" />-->
+      <Editor v-if="selectedType === 'Context'" v-model="description" editor-style="height: 250px" class="w-full" placeholder="Описание" />
       <div class="flex w-full gap-2 mt-3">
         <div v-if="active_question > 0">
           <Button
-            icon="pi pi-arrow-left"
-            rounded
-            @click="active_question--"
+              icon="pi pi-arrow-left"
+              rounded
+              @click="active_question--"
           />
         </div>
         <template
-          v-for="(question, qIdx) in questions"
-          :key="`question-${qIdx}`"
+            v-for="(question, qIdx) in questions"
+            :key="`question-${qIdx}`"
         >
           <div v-if="active_question === qIdx" class="scalein animation-duration-200 border-1 border-400 test-card border-left-none px-4 py-3 flex-1">
             <div class="flex align-items-center justify-content-between">
               <div class="flex align-items-center mb-3 gap-4">
-                <span class="font-semibold">Сұрақ №{{ qIdx + 1 }}</span>
+                <span class="font-semibold">Вопрос №{{ qIdx + 1 }}</span>
                 <div class="flex align-items-center">
                   <Checkbox v-model="question.multipleAnswers" inputId="multiple-answers" binary />
-                  <label for="multiple-answers" class="ml-2">Бірнеше жауап</label>
+                  <label for="multiple-answers" class="ml-2">Несколько ответов</label>
                 </div>
               </div>
               <Button
-                v-if="qIdx > 0"
-                size="sm"
-                icon="pi pi-trash"
-                severity="danger"
-                rounded
-                text
-                @click="removeQuestion(qIdx)"
+                  v-if="qIdx > 0"
+                  size="sm"
+                  icon="pi pi-trash"
+                  severity="danger"
+                  rounded
+                  text
+                  @click="removeQuestion(qIdx)"
               />
             </div>
-            <Textarea v-model="question.question" auto-resize class="w-full" placeholder="Сұрақ" />
+            <Textarea v-model="question.question" auto-resize class="w-full" placeholder="Вопрос" />
             <FileUpload
-              class="mt-3"
-              auto
-              mode="basic"
-              custom-upload
-              :maxFileSize="1000000"
-              :choose-label="file_is_uploading ? 'Загружается' : 'Файл жүктеу'"
-              upload-label="Жүктеу"
-              cancel-label="Отмена"
-              :disabled="file_is_uploading"
-              @uploader="uploadFiles($event, qIdx)"
+                class="mt-3"
+                auto
+                mode="basic"
+                custom-upload
+                :maxFileSize="1000000"
+                :choose-label="file_is_uploading ? 'Загружается' : 'Загрузить файл'"
+                upload-label="Загрузить"
+                cancel-label="Отмена"
+                :disabled="file_is_uploading"
+                @uploader="uploadFiles($event, qIdx)"
             >
               <template #empty>
-                <p class="my-0">Файлдарды жүктеңіз</p>
+                <p class="my-0">Загрузите файлы</p>
               </template>
             </FileUpload>
             <div v-if="uploaded_files[qIdx].length" class="mt-3 mb-3 flex flex-wrap gap-2">
@@ -230,42 +230,42 @@ watch(() => props.testId, (newValue) => {
                 <InputText v-model="option.text" type="text" class="p-inputtext-sm mx-2 flex-1" :placeholder="`Вариант ${oIdx+1}`" @keyup.enter="addQuestionOption(qIdx)" />
                 <i class="pi pi-times-circle cursor-pointer" @click="removeQuestionOption(qIdx, oIdx)"></i>
               </div>
-              <p class="text-xs text-500">Дұрыс жауаптарды таңдаңыз</p>
+              <p class="text-xs text-500">Выберите правильные ответы</p>
               <Button
-                size="sm"
-                text
-                label="+ Вариант қосу"
-                @click="addQuestionOption(qIdx)"
+                  size="sm"
+                  text
+                  label="+ Добавить вариант"
+                  @click="addQuestionOption(qIdx)"
               />
             </div>
           </div>
         </template>
         <div>
           <Button
-            v-if="questions.length-1 === active_question"
-            icon="pi pi-plus"
-            rounded
-            @click="addQuestion"
+              v-if="questions.length-1 === active_question"
+              icon="pi pi-plus"
+              rounded
+              @click="addQuestion"
           />
           <Button
-            v-else
-            icon="pi pi-arrow-right"
-            rounded
-            @click="active_question++"
+              v-else
+              icon="pi pi-arrow-right"
+              rounded
+              @click="active_question++"
           />
         </div>
       </div>
       <div class="flex justify-content-between align-items-center mt-5">
         <Dropdown
-          v-model="selectedType"
-          :options="testTypes"
-          option-label="name"
-          option-value="value"
+            v-model="selectedType"
+            :options="testTypes"
+            option-label="name"
+            option-value="value"
         />
         <Button
-          label="Сақтау"
-          :loading="is_creating"
-          @click="saveTest"
+            label="Сохранить"
+            :loading="is_creating"
+            @click="saveTest"
         />
       </div>
     </div>

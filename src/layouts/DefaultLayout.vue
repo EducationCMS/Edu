@@ -5,8 +5,8 @@ import { useUserStore } from "@/stores/user"
 import { storeToRefs } from "pinia"
 
 const ADMIN_MENU_ITEMS = [
-  { label: 'Аналитика', icon: 'analytics', routeName: 'AdminAnalytics' },
-  { label: 'Добавить менеджера', icon: 'add_user', routeName: 'AdminManagerList' },
+  // { label: 'Аналитика', icon: 'analytics', routeName: 'AdminAnalytics' },
+  // { label: 'Добавить менеджера', icon: 'add_user', routeName: 'AdminManagerList' },
   { label: 'Добавить учителя', icon: 'student', routeName: 'AdminTeacherList' },
   { label: 'Добавить класс', icon: 'user_group', routeName: 'AdminGroupList' },
   // { label: 'Оқушылар', icon: 'user_list', routeName: 'ManagerStudentList' },
@@ -14,8 +14,8 @@ const ADMIN_MENU_ITEMS = [
   { label: 'Добавить курс', icon: 'graduation_cap', routeName: 'AdminCourseList' },
   // { label: 'Тест қосу', icon: 'exam', routeName: 'AdminTestList' },
   { label: 'Добавить профессию', icon: 'star', routeName: 'AdminSpecializationList' },
-  { label: 'ЖОО қосу', icon: 'plus', routeName: 'AdminUniversityList' },
-  { label: 'Новости', icon: 'newspaper', routeName: 'AdminPostList' },
+  { label: 'Университеты', icon: 'plus', routeName: 'AdminUniversityList' },
+  // { label: 'Новости', icon: 'newspaper', routeName: 'AdminPostList' },
 ]
 
 const MANAGER_MENU_ITEMS = [
@@ -86,12 +86,13 @@ const logout = () => {
 <template>
   <div class="relative">
     <div class="layout__sidebar flex flex-column">
-      <img
-        src="@/assets/images/logo.png"
-        alt="inSight logo"
+      <h1
+          style="color: #ffffff"
         class="layout__sidebar__logo cursor-pointer align-self-center mb-4"
         @click="router.push({ name: 'Home' })"
-      />
+      >
+        Vanres
+      </h1>
       <router-link
         v-for="(item, index) in menu_items"
         :key="item.icon"
@@ -101,7 +102,7 @@ const logout = () => {
         :exact-active-class="'is-active'"
       >
         <div class="layout__sidebar__menu-item__icon mr-2">
-          <component :is="getIcon(item.icon)" />
+<!--          <component :is="getIcon(item.icon)" />-->
 <!--          <img :src="`/src/assets/images/icons/sidebar/${item.icon}.svg`" :alt="item.label"/>-->
         </div>
         <span>{{ item.label }}</span>
@@ -110,7 +111,7 @@ const logout = () => {
     <div>
       <header class="layout__header flex justify-content-end align-items-center">
         <div class="flex align-items-center gap-4">
-          <i class="pi pi-bell text-xl"></i>
+<!--          <i class="pi pi-bell text-xl"></i>-->
           <div v-if="user" class="flex align-items-center cursor-pointer" @click="logout">
             <Avatar :label="user.firstName[0].toUpperCase()" class="mr-2" size="large" shape="circle" />
             <div>
@@ -138,20 +139,20 @@ const logout = () => {
     right: 0;
     height: 100vh;
     width: 250px;
-    background-color: var(--surface-200);
+    background-color: #333333;
 
     &__logo {
       width: 130px;
     }
 
     &__menu-item {
-      color: #374957;
+      color: #ffffff;
       font-size: 15px;
       font-weight: 500;
       position: relative;
 
       &:hover {
-        background-color: var(--surface-300);
+        background-color: #555555;
       }
 
       &__icon {
@@ -162,7 +163,7 @@ const logout = () => {
       }
 
       &.is-active {
-        background-color: var(--surface-300);
+        background-color: #555555;
 
         &::before {
           content: "";
@@ -172,7 +173,7 @@ const logout = () => {
           left: -5px;
           width: 10px;
           border-radius: 12px;
-          background-color: #374957;
+          background-color: #333333;
         }
       }
     }

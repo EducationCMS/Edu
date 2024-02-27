@@ -112,43 +112,30 @@ watch(() => props.taskId, (newValue) => {
 </script>
 
 <template>
-  <Dialog v-model:visible="modelValue" modal header="Жаңа тапсырма жасау" :style="{ width: '40vw' }" @after-hide="onDialogClose">
+  <Dialog v-model:visible="modelValue" modal header="Создание нового задания" :style="{ width: '40vw' }" @after-hide="onDialogClose">
     <div class="formgrid grid">
       <div class="field col-6">
-        <Input v-model="task.name" label="Тапсырма атауы" :error="errors['name']"/>
+        <Input v-model="task.name" label="Название задания" :error="errors['name']"/>
       </div>
       <div class="field col-12">
-        <label class="font-semibold">Тапсырма туралы</label>
+        <label class="font-semibold">Описание задания</label>
         <Textarea v-model="task.description" rows="5" :class="[!!errors['description'] && 'p-invalid']" style="width: 100%"/>
         <small v-if="errors['description']" class="p-error">{{ errors['description'] ?? '&nbsp;'  }}</small>
       </div>
-<!--      <div class="field col-12">-->
-<!--        <label for="deadline_date" class="font-semibold">Дедлайн</label>-->
-<!--        <Calendar-->
-<!--          v-model="task.deadline"-->
-<!--          id="deadline_date"-->
-<!--          date-format="yy-mm-dd"-->
-<!--          :manualInput="false"-->
-<!--          show-icon-->
-<!--          show-time-->
-<!--          hour-format="24"-->
-<!--          hide-on-date-time-select-->
-<!--        />-->
-<!--      </div>-->
       <div class="field col-12 mt-4">
         <FileUpload
-          auto
-          mode="basic"
-          custom-upload
-          :maxFileSize="1000000"
-          :choose-label="file_is_uploading ? 'Загружается' : 'Қосу'"
-          upload-label="Жүктеу"
-          cancel-label="Отмена"
-          :disabled="file_is_uploading"
-          @uploader="uploadFiles"
+            auto
+            mode="basic"
+            custom-upload
+            :maxFileSize="1000000"
+            :choose-label="file_is_uploading ? 'Загружается' : 'Добавить'"
+            upload-label="Загрузить"
+            cancel-label="Отмена"
+            :disabled="file_is_uploading"
+            @uploader="uploadFiles"
         >
           <template #empty>
-            <p class="my-0">Файлдарды жүктеңіз</p>
+            <p class="my-0">Загрузите файлы</p>
           </template>
         </FileUpload>
         <div class="mt-3 flex flex-wrap gap-2">
@@ -162,10 +149,10 @@ watch(() => props.taskId, (newValue) => {
       </div>
       <div class="field col-12 flex justify-content-end">
         <Button
-          class="mt-4"
-          label="Сақтау"
-          :loading="is_creating"
-          @click="createTask"
+            class="mt-4"
+            label="Сохранить"
+            :loading="is_creating"
+            @click="createTask"
         />
       </div>
     </div>

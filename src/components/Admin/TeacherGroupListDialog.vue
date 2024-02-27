@@ -17,26 +17,26 @@ const toGroupPage = (id: number) => {
 </script>
 
 <template>
-  <Dialog v-model:visible="modelValue" modal header="Сыныптары" :style="{ width: '40vw' }" @after-hide="emits('close')">
+  <Dialog v-model:visible="modelValue" modal header="Классы" :style="{ width: '40vw' }" @after-hide="emits('close')">
     <div >
       <DataTable
-        :value="groups || []"
-        striped-rows
-        table-class="border-1 border-solid border-300"
+          :value="groups || []"
+          striped-rows
+          table-class="border-1 border-solid border-300"
       >
-        <template #empty>Сыныптар табылмады</template>
-        <Column field="name" header="Сынып"></Column>
-        <Column header="Сынып туралы">
+        <template #empty>Классы не найдены</template>
+        <Column field="name" header="Класс"></Column>
+        <Column header="О классе">
           <template #body="slotProps">
             <Button
-              size="small"
-              class="bg-green-100 text-green-500"
-              text
-              icon="pi pi-eye"
-              label="Толық көру"
-              style="height: 36px"
-              severity="success"
-              @click="toGroupPage(slotProps.data.id)"
+                size="small"
+                class="bg-green-100 text-green-500"
+                text
+                icon="pi pi-eye"
+                label="Подробнее"
+                style="height: 36px"
+                severity="success"
+                @click="toGroupPage(slotProps.data.id)"
             />
           </template>
         </Column>
@@ -44,6 +44,11 @@ const toGroupPage = (id: number) => {
     </div>
   </Dialog>
 </template>
+
+
+
+
+
 
 <style scoped lang="scss">
 

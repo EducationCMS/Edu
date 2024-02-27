@@ -167,44 +167,44 @@ const onFilter = (event: MultiSelectFilterEvent) => {
 
 <template>
   <Dialog
-    v-model:visible="modelValue"
-    modal
-    header="ЖОО қосу"
-    :style="{ width: '80%', maxWidth: '800px' }"
-    @after-hide="onDialogClose"
+      v-model:visible="modelValue"
+      modal
+      header="Добавление университета"
+      :style="{ width: '80%', maxWidth: '800px' }"
+      @after-hide="onDialogClose"
   >
     <div class="formgrid grid">
       <div class="field col-12">
         <div class="flex flex-column gap-2">
-          <label for="name" class="font-semibold">Аты</label>
+          <label for="name" class="font-semibold">Название</label>
           <InputText
-            id="name"
-            v-model="form.name"
-            :class="[hasKey('name') && 'p-invalid']"
-            aria-describedby="first_name_error"
+              id="name"
+              v-model="form.name"
+              :class="[hasKey('name') && 'p-invalid']"
+              aria-describedby="first_name_error"
           />
           <small v-if="errors['name']" class="p-error" id="first_name_error">{{ errors["name"] ?? "&nbsp;" }}</small>
         </div>
       </div>
       <div class="field col-6">
         <div class="flex flex-column gap-2">
-          <label for="last_name" class="font-semibold">Коды</label>
+          <label for="last_name" class="font-semibold">Код</label>
           <InputText
-            id="last_name"
-            v-model="form.code"
-            :class="[hasKey('code') && 'p-invalid']"
-            aria-describedby="last_name_error"
+              id="last_name"
+              v-model="form.code"
+              :class="[hasKey('code') && 'p-invalid']"
+              aria-describedby="last_name_error"
           />
           <small v-if="errors['code']" class="p-error" id="last_name_error">{{ errors["code"] ?? "&nbsp;" }}</small>
         </div>
       </div>
       <div class="field col-6">
         <div class="flex flex-column gap-2">
-          <label for="middle_name" class="font-semibold">Қала</label>
+          <label for="middle_name" class="font-semibold">Город</label>
           <Dropdown
-            v-model="form.city"
-            :options="cities"
-            option-label="name"
+              v-model="form.city"
+              :options="cities"
+              option-label="name"
           />
         </div>
       </div>
@@ -212,32 +212,32 @@ const onFilter = (event: MultiSelectFilterEvent) => {
         <div class="flex flex-column gap-2">
           <label for="last_name" class="font-semibold">Адрес</label>
           <InputText
-            id="last_name"
-            v-model="form.address"
-            :class="[hasKey('address') && 'p-invalid']"
-            aria-describedby="last_name_error"
+              id="last_name"
+              v-model="form.address"
+              :class="[hasKey('address') && 'p-invalid']"
+              aria-describedby="last_name_error"
           />
           <small
-            v-if="errors['address']"
-            class="p-error"
-            id="last_name_error"
+              v-if="errors['address']"
+              class="p-error"
+              id="last_name_error"
           >{{ errors["address"] ?? "&nbsp;" }}</small>
         </div>
       </div>
       <div class="field col-6">
         <div class="flex flex-column gap-2">
-          <label for="last_name" class="font-semibold">Орташа бағасы</label>
+          <label for="last_name" class="font-semibold">Средняя стоимость</label>
           <InputNumber
-            v-model="form.middlePrice"
-            inputId="minmax-buttons"
-            mode="decimal"
-            showButtons
-            :min="0"
+              v-model="form.middlePrice"
+              inputId="minmax-buttons"
+              mode="decimal"
+              showButtons
+              :min="0"
           />
           <small
-            v-if="errors['middlePrice']"
-            class="p-error"
-            id="last_name_error"
+              v-if="errors['middlePrice']"
+              class="p-error"
+              id="last_name_error"
           >{{ errors["middlePrice"] ?? "&nbsp;" }}</small>
         </div>
       </div>
@@ -245,84 +245,85 @@ const onFilter = (event: MultiSelectFilterEvent) => {
         <div class="flex gap-3">
           <div class="flex align-items-center">
             <Checkbox v-model="form.dormitory" inputId="ingredient1" binary name="pizza" :value="true" />
-            <label for="ingredient1" class="ml-2">Жатақхана</label>
+            <label for="ingredient1" class="ml-2">Общежитие</label>
           </div>
           <div class="flex align-items-center">
             <Checkbox v-model="form.militaryDepartment" inputId="ingredient2" binary name="pizza" :value="true" />
-            <label for="ingredient2" class="ml-2">Әскери кафедра</label>
+            <label for="ingredient2" class="ml-2">Военная кафедра</label>
           </div>
         </div>
       </div>
       <div class="field col-12">
         <div class="flex flex-column gap-2">
-          <label for="last_name" class="font-semibold">Мамандықтар</label>
+          <label for="last_name" class="font-semibold">Специальности</label>
           <MultiSelect
-            v-model="form.specializations"
-            data-key="id"
-            :options="specializations"
-            optionLabel="name"
-            filter
-            :virtual-scroller-options="{
+              v-model="form.specializations"
+              data-key="id"
+              :options="specializations"
+              optionLabel="name"
+              filter
+              :virtual-scroller-options="{
               lazy: true,
               onLazyLoad: onLazyLoad,
               itemSize: 25,
             }"
-            :selection-message="'Таңдалды: {0}'"
-            :maxSelectedLabels="2"
+              :selection-message="'Выбрано: {0}'"
+              :maxSelectedLabels="2"
+              @onFilter="onFilter"
           />
           <small
-            v-if="errors['specializations']"
-            class="p-error"
-            id="last_name_error"
+              v-if="errors['specializations']"
+              class="p-error"
+              id="last_name_error"
           >{{ errors["specializations"] ?? "&nbsp;" }}</small>
         </div>
       </div>
       <div class="field col-12">
-        <label class="font-semibold">Қысқаша сипаттамасы</label>
+        <label class="font-semibold">Краткое описание</label>
         <Textarea
-          v-model="form.description"
-          rows="5"
-          :class="[!!errors['description'] && 'p-invalid']"
-          style="width: 100%"
+            v-model="form.description"
+            rows="5"
+            :class="[!!errors['description'] && 'p-invalid']"
+            style="width: 100%"
         />
         <small v-if="errors['description']" class="p-error">{{ errors["description"] ?? "&nbsp;" }}</small>
       </div>
       <div class="field col-12">
-        <label for="photo" class="font-semibold">ЖОО суреті</label>
+        <label for="photo" class="font-semibold">Фотография университета</label>
         <div v-if="!!uploadedFile" class="relative w-fit">
           <img :src="getImageUrl(uploadedFile.url)" style="width: 100%; height: auto" />
           <Button
-            icon="pi pi-trash"
-            severity="danger"
-            rounded
-            class="absolute"
-            style="right: 1rem; top: 1rem"
-            @click="deleteFile(uploadedFile.id)"
+              icon="pi pi-trash"
+              severity="danger"
+              rounded
+              class="absolute"
+              style="right: 1rem; top: 1rem"
+              @click="deleteFile(uploadedFile.id)"
           ></Button>
         </div>
         <FileUpload
-          v-else
-          auto
-          mode="basic"
-          custom-upload
-          :maxFileSize="1000000"
-          :choose-label="fileIsUploading ? 'Загружается' : 'Қосу'"
-          upload-label="Жүктеу"
-          cancel-label="Отмена"
-          :accept="'image/*'"
-          :disabled="fileIsUploading"
-          @uploader="uploadFiles"
+            v-else
+            auto
+            mode="basic"
+            custom-upload
+            :maxFileSize="1000000"
+            :choose-label="fileIsUploading ? 'Загружается' : 'Добавить'"
+            upload-label="Загрузить"
+            cancel-label="Отмена"
+            :accept="'image/*'"
+            :disabled="fileIsUploading"
+            @uploader="uploadFiles"
         >
           <template #empty>
-            <p class="my-0">Файлдарды жүктеңіз</p>
+            <p class="my-0">Загрузите файлы</p>
           </template>
         </FileUpload>
       </div>
       <div class="field col-12 flex justify-content-end mt-5">
         <Button
-          label="Сақтау"
-          :loading="isCreating || fileIsUploading"
-          @click="createUniversity"
+            label="Сохранить"
+            :loading="isCreating || fileIsUploading"
+            @click="createUniversity"
         />
       </div>
     </div>

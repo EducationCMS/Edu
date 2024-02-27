@@ -386,7 +386,7 @@ onMounted(() => {
     <div class="flex justify-content-between align-items-center mt-5 mb-6">
       <span class="p-input-icon-left">
         <i class="pi pi-search" />
-        <InputText v-model="search" placeholder="Іздеу" />
+        <InputText v-model="search" placeholder="Искать" />
       </span>
       <Button
         label="+ Добавить класс"

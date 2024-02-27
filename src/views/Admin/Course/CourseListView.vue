@@ -253,7 +253,7 @@ onMounted(getCourseList)
             <div>
               <div class="flex align-items-center justify-content-between">
                 <p class="font-semibold">Темы</p>
-                <Button label="Қосу" class="ml-4 h-2rem" aria-label="Добавить курс" size="small" @click="addEmptyTopic(mIdx)"/>
+                <Button label="Добавить" class="ml-4 h-2rem" aria-label="Добавить курс" size="small" @click="addEmptyTopic(mIdx)"/>
               </div>
               <draggable v-model="module.topics" :animation="200">
                 <div
