@@ -56,7 +56,7 @@ watch(user, (newValue) => {
         class="logo cursor-pointer"
         @click="router.push({ name: 'Home' })"
       >
-        Vanres
+        TestKenes
       </h1>
     </div>
     <div class="flex justify-content-center flex-grow-1">
@@ -64,7 +64,7 @@ watch(user, (newValue) => {
         <p class="text-xl font-medium mb-6">Добро пожаловать на платформу Vanres</p>
         <div class="flex flex-column gap-2 mb-4">
           <label for="email" class="font-light">Email</label>
-          <InputText v-model="email" id="email" placeholder="Поштаңызды енгізіңіз" />
+          <InputText v-model="email" id="email" placeholder="Введите свою почту" />
         </div>
         <div class="flex flex-column gap-2">
           <label for="password" class="font-light">Пароль</label>
