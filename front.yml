@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  app:
+    image: node:14
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - "5173:5173"
+    command: bash -c "npm install --global npm-run-all && npm install && npm run dev"
