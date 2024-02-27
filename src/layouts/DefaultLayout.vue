@@ -91,7 +91,7 @@ const logout = () => {
         class="layout__sidebar__logo cursor-pointer align-self-center mb-4"
         @click="router.push({ name: 'Home' })"
       >
-        Vanres
+        TestKenes
       </h1>
       <router-link
         v-for="(item, index) in menu_items"
